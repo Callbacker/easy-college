@@ -12,14 +12,14 @@ import java.util.Map;
 public interface UserRepository extends JpaRepository<UserPo,Integer> {
 
     @Query(value="SELECT\r\n" +
-            "	a.id accountId,\r\n" +
-            "	a.user_name userName,\r\n" +
-            "	a.role_id roleId,\r\n" +
-            "	a.password,\r\n" +
-            "	GROUP_CONCAT(r.name) role\r\n" +
-            "FROM account a \r\n" +
-            "LEFT JOIN sys_role r ON (a.role_id = r.id)\r\n" +
+            "	u.id userId,\r\n" +
+            "	u.phone phone,\r\n" +
+            "	r.id roleId,\r\n" +
+            "	u.password,\r\n" +
+            "	GROUP_CONCAT(r.name) roleName\r\n" +
+            "FROM user u \r\n" +
+            "LEFT JOIN role r ON (a.role_id = r.id)\r\n" +
             "WHERE\r\n" +
-            "	a.user_name = :userName",nativeQuery=true)
-    Map<String, Object> findUserAuthentic(@Param("userName")String userName);
+            "	u.phone = :phone",nativeQuery=true)
+    Map<String, Object> findUserAuthentic(@Param("phone")String phone);
 }

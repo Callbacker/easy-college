@@ -20,14 +20,14 @@ public class UserDetailService implements UserDetailsService {
 	private UserRepository userRepository;
 	
 	@Override
-	public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
+	public UserDetails loadUserByUsername(String phone) throws UsernameNotFoundException {
+		//这里用户登录名为手机号
 		try {
 			//返回实现了UserDetails接口的对象	
-			return BeanKit.changeRecordToBean(userRepository.findUserAuthentic(name), UserAuthentic.class);
+			return BeanKit.changeRecordToBean(userRepository.findUserAuthentic(phone), UserAuthentic.class);
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new UsernameNotFoundException(MessageUtil.loadMessage("noUser", name));
+			throw new UsernameNotFoundException(MessageUtil.loadMessage("noUser", phone));
 		}
 	}
 

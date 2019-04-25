@@ -16,24 +16,23 @@ public class UserAuthentic implements Serializable,UserDetails {
 	 */
 	private static final long serialVersionUID = -4867613903306792830L;
 
-	private Integer accountId ;
+	private Integer userId ;
 	
-	private String userName ;
+	private String phone ;
 	
 	private String password ;
 	
 	private Integer roleId ;
 	
-	private String role ;
-	
-	
+	private String roleName ;
+
 	private List<String> roleList = new ArrayList<String>();
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		 List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();  
-		 if(this.role != null) {
-			 String[] roles = this.role.split(",");  
+		 if(this.roleName != null) {
+			 String[] roles = this.roleName.split(",");
 		        for(String r : roles){  
 		            if(r != null && !"".equals(r)){  
 		                GrantedAuthority authority = new SimpleGrantedAuthority(r);  
@@ -54,7 +53,7 @@ public class UserAuthentic implements Serializable,UserDetails {
 
 	@Override
 	public String getUsername() {
-		return this.userName;
+		return this.phone;
 	}
 
 	@Override
@@ -81,6 +80,48 @@ public class UserAuthentic implements Serializable,UserDetails {
 		return true;
 	}
 
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Integer getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
+	}
+
+	public String getRoleName() {
+		return roleName;
+	}
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+
+
 	public List<String> getRoleList() {
 		return roleList;
 	}
@@ -88,60 +129,4 @@ public class UserAuthentic implements Serializable,UserDetails {
 	public void setRoleList(List<String> roleList) {
 		this.roleList = roleList;
 	}
-
-
-
-	public Integer getAccountId() {
-		return accountId;
-	}
-
-
-
-	public void setAccountId(Integer accountId) {
-		this.accountId = accountId;
-	}
-
-
-
-	public String getUserName() {
-		return userName;
-	}
-
-
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-
-
-	public Integer getRoleId() {
-		return roleId;
-	}
-
-
-
-	public void setRoleId(Integer roleId) {
-		this.roleId = roleId;
-	}
-
-
-
-	public String getRole() {
-		return role;
-	}
-
-
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
-
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-
 }

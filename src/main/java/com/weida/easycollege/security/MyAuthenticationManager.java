@@ -17,7 +17,7 @@ import javax.annotation.Resource;
 @Component("authenticationManager")
 public class MyAuthenticationManager implements AuthenticationManager {
 	
-	@Resource(name="userDetailServiceImpl")
+	@Resource(name="userDetailService")
 	private UserDetailsService userDetailsService;
 	
 	@Override
