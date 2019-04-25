@@ -50,19 +50,19 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
 		//匿名用户访问无权限资源时的跳转到登录页
 		httpSecurity.exceptionHandling().authenticationEntryPoint(new CustomLoginUrlAuthenticationEntryPoint("/login"));
 		//session无效的跳转链接
-		httpSecurity.sessionManagement().invalidSessionUrl("/login");
+//		httpSecurity.sessionManagement().invalidSessionUrl("/login");
 		//http请求的权限设置
 		httpSecurity.authorizeRequests()
 			//登录不拦截
-			.antMatchers("/","/login").permitAll()
+			.antMatchers("/easycollege/swagger-ui.html","/*").permitAll()
 			//任何没有匹配的url请求，只需要用户被验证
 			.anyRequest().authenticated()
 			//任何url都需要csrf跨域保护
 			.antMatchers("/**").authenticated().requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
 			//登录页面的路径
-			.and().formLogin().loginPage("/login")
+//			.and().formLogin().loginPage("/login")
 			 //退出的跳转路径
-			.and().logout().logoutUrl("/login").logoutSuccessUrl("/login").invalidateHttpSession(true).deleteCookies("JSESSIONID")
+//			.and().logout().logoutUrl("/login").logoutSuccessUrl("/login").invalidateHttpSession(true).deleteCookies("JSESSIONID")
 			//允许所有请求通过Http Basic 验证
 			.and().httpBasic();
 

@@ -18,7 +18,7 @@ public class UserAuthentic implements Serializable,UserDetails {
 
 	private Integer userId ;
 	
-	private String phone ;
+	private String userName ;
 	
 	private String password ;
 	
@@ -53,7 +53,7 @@ public class UserAuthentic implements Serializable,UserDetails {
 
 	@Override
 	public String getUsername() {
-		return this.phone;
+		return this.userName;
 	}
 
 	@Override
@@ -93,12 +93,12 @@ public class UserAuthentic implements Serializable,UserDetails {
 		this.userId = userId;
 	}
 
-	public String getPhone() {
-		return phone;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public void setPassword(String password) {

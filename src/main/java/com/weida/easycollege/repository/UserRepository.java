@@ -13,13 +13,13 @@ public interface UserRepository extends JpaRepository<UserPo,Integer> {
 
     @Query(value="SELECT\r\n" +
             "	u.id userId,\r\n" +
-            "	u.phone phone,\r\n" +
+            "	u.nick_name userName,\r\n" +
             "	r.id roleId,\r\n" +
             "	u.password,\r\n" +
             "	GROUP_CONCAT(r.name) roleName\r\n" +
             "FROM user u \r\n" +
             "LEFT JOIN role r ON (a.role_id = r.id)\r\n" +
             "WHERE\r\n" +
-            "	u.phone = :phone",nativeQuery=true)
+            "	u.nick_name = :phone",nativeQuery=true)
     Map<String, Object> findUserAuthentic(@Param("phone")String phone);
 }
