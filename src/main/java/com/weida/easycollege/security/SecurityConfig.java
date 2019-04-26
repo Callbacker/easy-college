@@ -13,7 +13,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.cors.CorsUtils;
 
-
+/**
+ * Spring Security 配置类
+ */
 @Configuration
 @EnableWebSecurity
 @Order(0)
@@ -37,22 +39,26 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
 	    authenticationProvider.setPasswordEncoder(passwordEncoder());
 	    return authenticationProvider;
 	}
-	
+
 	@Autowired
 	public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
-		//设置security的用户详情
+		//设置security的用户授权和角色信息
 		auth.userDetailsService(getUserDetails());
 		auth.authenticationProvider(authenticationProvider());
 	}
-	
+
+	//	重写Configure方法，配置基于特定http请求的安全认证
 	@Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
 		//匿名用户访问无权限资源时的跳转到登录页
-		httpSecurity.exceptionHandling().authenticationEntryPoint(new CustomLoginUrlAuthenticationEntryPoint("/login"));
+//		httpSecurity.exceptionHandling().authenticationEntryPoint(new CustomLoginUrlAuthenticationEntryPoint("/login"));
 		//session无效的跳转链接
 //		httpSecurity.sessionManagement().invalidSessionUrl("/login");
 		//http请求的权限设置
 		httpSecurity.authorizeRequests()
+			//只有具有admin权限的用户才可以访问符合/admin/** 的url
+			.antMatchers("/admin/**").access("hasRole('admin')")
+			.antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')")
 			//登录不拦截
 			.antMatchers("/easycollege/swagger-ui.html","/*").permitAll()
 			//任何没有匹配的url请求，只需要用户被验证
@@ -63,7 +69,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
 //			.and().formLogin().loginPage("/login")
 			 //退出的跳转路径
 //			.and().logout().logoutUrl("/login").logoutSuccessUrl("/login").invalidateHttpSession(true).deleteCookies("JSESSIONID")
-			//允许所有请求通过Http Basic 验证
+			//允许所有请求通过 Http Basic 验证
 			.and().httpBasic();
 
    }

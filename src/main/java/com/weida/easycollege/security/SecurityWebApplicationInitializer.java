@@ -2,6 +2,9 @@ package com.weida.easycollege.security;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+/**
+ * springmvc 初始化类 AbstractAnnotationConfigDispatcherServletInitializer 是所有 WebApplicationInitializer 实现的基类。
+ */
 public class SecurityWebApplicationInitializer  extends AbstractAnnotationConfigDispatcherServletInitializer  {
 	@Override
 	protected Class<?>[] getRootConfigClasses() {

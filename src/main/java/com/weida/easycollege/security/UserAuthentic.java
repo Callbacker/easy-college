@@ -9,12 +9,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class UserAuthentic implements Serializable,UserDetails {
+//实现 security 的 UserDetails 接口
+public class UserAuthentic implements UserDetails {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -4867613903306792830L;
 
 	private Integer userId ;
 	
@@ -80,10 +77,6 @@ public class UserAuthentic implements Serializable,UserDetails {
 		return true;
 	}
 
-
-	public static long getSerialVersionUID() {
-		return serialVersionUID;
-	}
 
 	public Integer getUserId() {
 		return userId;

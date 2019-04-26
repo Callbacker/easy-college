@@ -11,7 +11,7 @@ import utils.BeanKit;
 import utils.MessageUtil;
 
 /**
- * 实现security的用户详情接口
+ * 实现security的用户详情接口  用于登录时 @AuthenticationPrincipal 注解取值
  */
 @Service
 public class UserDetailService implements UserDetailsService {

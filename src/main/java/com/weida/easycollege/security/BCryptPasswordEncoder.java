@@ -3,7 +3,7 @@ package com.weida.easycollege.security;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import utils.HashKit;
 
-
+//BCryptPasswordEncoder 密码加密
 public class BCryptPasswordEncoder implements PasswordEncoder {
 
 	@Override
