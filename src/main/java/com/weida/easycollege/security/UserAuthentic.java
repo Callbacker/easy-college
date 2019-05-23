@@ -30,7 +30,7 @@ public class UserAuthentic implements UserDetails {
 		 List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();  
 		 if(this.roleName != null) {
 			 String[] roles = this.roleName.split(",");
-		        for(String r : roles){  
+		        for(String r : roles){
 		            if(r != null && !"".equals(r)){  
 		                GrantedAuthority authority = new SimpleGrantedAuthority(r);  
 		                authorities.add(authority);
@@ -40,7 +40,6 @@ public class UserAuthentic implements UserDetails {
 		 }
 		 return authorities;
 	}
-
 
 
 	@Override
